@@ -1,1 +1,1 @@
-console.log('filters project');
+import { products } from './products.js';
