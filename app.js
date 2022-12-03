@@ -30,8 +30,7 @@ displayProducts();
 const form = document.querySelector('.input-form');
 const searchInput = document.querySelector('.search-input');
 
-form.addEventListener('keyup', (e) => {
-  e.preventDefault();
+form.addEventListener('keyup', () => {
   const inputValue = searchInput.value;
   filteredProducts = products.filter((product) => {
     return product.title.toLocaleLowerCase().includes(inputValue);
@@ -53,3 +52,18 @@ const displayButtons = () => {
     .join('');
 };
 displayButtons();
+
+companiesDOM.addEventListener('click', (e) => {
+  const el = e.target;
+  if (el.classList.contains('company-btn')) {
+    if (el.dataset.id === 'all') {
+      filteredProducts = [...products];
+    } else {
+      filteredProducts = products.filter((product) => {
+        return product.company === el.dataset.id;
+      });
+    }
+    searchInput.value = '';
+    displayProducts();
+  }
+});
