@@ -19,6 +19,11 @@ const displayProducts = () => {
         </article>`;
     })
     .join('');
+
+  if (filteredProducts.length < 1) {
+    productsContainer.innerHTML = `<h6>Sorry, no products matched your search.</h6>`;
+    return;
+  }
 };
 displayProducts();
 
@@ -33,3 +38,18 @@ form.addEventListener('keyup', (e) => {
   });
   displayProducts();
 });
+
+const companiesDOM = document.querySelector('.companies');
+
+const displayButtons = () => {
+  const buttons = [
+    'all',
+    ...new Set(products.map((product) => product.company)),
+  ];
+  companiesDOM.innerHTML = buttons
+    .map((company) => {
+      return `<button class='company-btn' data-id="${company}">${company}</button>`;
+    })
+    .join('');
+};
+displayButtons();
