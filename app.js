@@ -21,3 +21,15 @@ const displayProducts = () => {
     .join('');
 };
 displayProducts();
+
+const form = document.querySelector('.input-form');
+const searchInput = document.querySelector('.search-input');
+
+form.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  const inputValue = searchInput.value;
+  filteredProducts = products.filter((product) => {
+    return product.title.toLocaleLowerCase().includes(inputValue);
+  });
+  displayProducts();
+});
